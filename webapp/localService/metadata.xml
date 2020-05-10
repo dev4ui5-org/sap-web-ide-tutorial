@@ -1,0 +1,174 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='QJ9_500')/$value"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Z_OFFICE_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZCPDB_EMPLOYEE_TPType" sap:label="Consumption View" sap:content-version="1">
+				<Key><PropertyRef Name="employeeuuid"/></Key><Property Name="employeeuuid" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="officeuuid" Type="Edm.Guid" sap:label="NodeID" sap:heading="" sap:value-list="standard"/><Property Name="name" Type="Edm.String" MaxLength="256"/><Property Name="employee_position" Type="Edm.String" MaxLength="256"/><Property Name="gender" Type="Edm.String" MaxLength="1"/><Property Name="experience_years" Type="Edm.Int32"/><NavigationProperty Name="to_Office" Relationship="Z_OFFICE_SRV.assoc_538BCB6BDF5BB570D0366CB532844E82"
+					FromRole="ToRole_assoc_538BCB6BDF5BB570D0366CB532844E82" ToRole="FromRole_assoc_538BCB6BDF5BB570D0366CB532844E82"/></EntityType>
+			<EntityType Name="ZCPDB_OFFICE_TPType" sap:label="Consumption view for office." sap:content-version="1">
+				<Key><PropertyRef Name="officeuuid"/></Key><Property Name="officeuuid" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="name" Type="Edm.String" MaxLength="256"/><Property Name="location" Type="Edm.String" MaxLength="256"/><NavigationProperty Name="to_Employee" Relationship="Z_OFFICE_SRV.assoc_538BCB6BDF5BB570D0366CB532844E82"
+					FromRole="FromRole_assoc_538BCB6BDF5BB570D0366CB532844E82" ToRole="ToRole_assoc_538BCB6BDF5BB570D0366CB532844E82"/><NavigationProperty Name="to_Workstation" Relationship="Z_OFFICE_SRV.assoc_C8B09C8B1823954C2AC20D4EA8005FFF"
+					FromRole="FromRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF" ToRole="ToRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"/></EntityType>
+			<EntityType Name="ZCPDB_WORKSTATION_TPType" sap:label="Consumption view for workstation." sap:content-version="1">
+				<Key><PropertyRef Name="workstationuuid"/></Key><Property Name="workstationuuid" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="officeuuid" Type="Edm.Guid" sap:label="NodeID" sap:heading="" sap:value-list="standard"/><Property Name="workstationid" Type="Edm.String" MaxLength="256"/><NavigationProperty Name="to_Office" Relationship="Z_OFFICE_SRV.assoc_C8B09C8B1823954C2AC20D4EA8005FFF"
+					FromRole="ToRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF" ToRole="FromRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"/></EntityType>
+			<Association Name="assoc_C8B09C8B1823954C2AC20D4EA8005FFF" sap:content-version="1">
+				<End Type="Z_OFFICE_SRV.ZCPDB_OFFICE_TPType" Multiplicity="1" Role="FromRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"><OnDelete Action="Cascade"/></End><End Type="Z_OFFICE_SRV.ZCPDB_WORKSTATION_TPType" Multiplicity="*" Role="ToRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"><PropertyRef Name="officeuuid"/></Principal>
+					<Dependent Role="ToRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"><PropertyRef Name="officeuuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_538BCB6BDF5BB570D0366CB532844E82" sap:content-version="1">
+				<End Type="Z_OFFICE_SRV.ZCPDB_OFFICE_TPType" Multiplicity="1" Role="FromRole_assoc_538BCB6BDF5BB570D0366CB532844E82"><OnDelete Action="Cascade"/></End><End Type="Z_OFFICE_SRV.ZCPDB_EMPLOYEE_TPType" Multiplicity="*" Role="ToRole_assoc_538BCB6BDF5BB570D0366CB532844E82"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_538BCB6BDF5BB570D0366CB532844E82"><PropertyRef Name="officeuuid"/></Principal>
+					<Dependent Role="ToRole_assoc_538BCB6BDF5BB570D0366CB532844E82"><PropertyRef Name="officeuuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="Z_OFFICE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZCPDB_EMPLOYEE_TP" EntityType="Z_OFFICE_SRV.ZCPDB_EMPLOYEE_TPType" sap:searchable="true" sap:content-version="1"/><EntitySet Name="ZCPDB_OFFICE_TP" EntityType="Z_OFFICE_SRV.ZCPDB_OFFICE_TPType" sap:searchable="true" sap:content-version="1"/><EntitySet Name="ZCPDB_WORKSTATION_TP" EntityType="Z_OFFICE_SRV.ZCPDB_WORKSTATION_TPType" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_538BCB6BDF5BB570D0366CB532844E82" Association="Z_OFFICE_SRV.assoc_538BCB6BDF5BB570D0366CB532844E82"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCPDB_OFFICE_TP" Role="FromRole_assoc_538BCB6BDF5BB570D0366CB532844E82"/><End EntitySet="ZCPDB_EMPLOYEE_TP" Role="ToRole_assoc_538BCB6BDF5BB570D0366CB532844E82"/></AssociationSet>
+				<AssociationSet Name="assoc_C8B09C8B1823954C2AC20D4EA8005FFF" Association="Z_OFFICE_SRV.assoc_C8B09C8B1823954C2AC20D4EA8005FFF"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCPDB_OFFICE_TP" Role="FromRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"/><End EntitySet="ZCPDB_WORKSTATION_TP" Role="ToRole_assoc_C8B09C8B1823954C2AC20D4EA8005FFF"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.ZCPDB_EMPLOYEE_TPType/officeuuid">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Consumption view for office."/><PropertyValue Property="CollectionPath" String="ZCPDB_OFFICE_TP"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="officeuuid"/><PropertyValue Property="ValueListProperty" String="officeuuid"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.ZCPDB_WORKSTATION_TPType/officeuuid">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Consumption view for office."/><PropertyValue Property="CollectionPath" String="ZCPDB_OFFICE_TP"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="officeuuid"/><PropertyValue Property="ValueListProperty" String="officeuuid"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.Z_OFFICE_SRV_Entities"><Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.Z_OFFICE_SRV_Entities/ZCPDB_EMPLOYEE_TP">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="name"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="employee_position"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>name</PropertyPath>
+								<PropertyPath>employee_position</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.Z_OFFICE_SRV_Entities/ZCPDB_OFFICE_TP">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="name"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="location"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>name</PropertyPath>
+								<PropertyPath>location</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.Z_OFFICE_SRV_Entities/ZCPDB_WORKSTATION_TP">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="workstationid"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>workstationid</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.ZCPDB_EMPLOYEE_TPType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>name</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.ZCPDB_OFFICE_TPType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>name</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Z_OFFICE_SRV.ZCPDB_WORKSTATION_TPType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>workstationid</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/sap/Z_OFFICE_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://lddbqj9.wdf.sap.corp:44300/sap/opu/odata/sap/Z_OFFICE_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
