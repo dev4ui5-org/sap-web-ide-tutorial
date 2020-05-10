@@ -1,3 +1,3 @@
 # sap-web-ide-tutorial
 
-Tutorial on how to use Github as collaborative platform wit Web Ide
+Tutorial on how to use Github as collaborative platform with Web Ide
